@@ -32,8 +32,8 @@ public class SecurityConfig {
                 .requestMatchers("/", "/login", "/signup",
                                  "/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/products/add", "/products/*/delete").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/products/add", "/products/*/edit").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/products", "/products/*/edit", "/products/*/delete").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
